@@ -23,7 +23,6 @@ class AuthTestController extends Controller
                 return response()->json(['status' => 'error', 'message' => 'Email sudah terdaftar!'], 409);
             }
 
-            // Simpan data
             DB::connection($pt)->table('test_accounts')->insert([
                 'name'     => $request->name,
                 'email'    => $request->email,
