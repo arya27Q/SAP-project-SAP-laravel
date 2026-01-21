@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('test_accounts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique(); // Supaya 1 email cuma bisa daftar 1x
+            $table->string('email')->unique(); 
             $table->string('password');
-            $table->string('pt_name')->nullable(); // Opsional: buat nandain dia register di PT mana
+            $table->string('pt_name')->nullable(); 
             $table->timestamps();
             });
     }
