@@ -26,10 +26,6 @@ return [
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-            'busy_timeout' => null,
-            'journal_mode' => null,
-            'synchronous' => null,
-            'transaction_mode' => 'DEFERRED',
         ],
 
         'mysql' => [
@@ -40,27 +36,23 @@ return [
             'database' => env('DB_DATABASE', 'laravel'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                (PHP_VERSION_ID >= 80500 ? \PDO::MYSQL_ATTR_SSL_CA : \PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
         ],
 
-        // Koneksi Utama SQL Server (Master BP)
+        // --- KONEKSI UTAMA AZURE (MASTER BP) ---
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', 'sqldempo.southeastasia.cloudapp.azure.com'),
             'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'db_master_bp'),
-            'username' => env('DB_USERNAME', 'sa'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'master_bp'),
+            'username' => env('DB_USERNAME', 'Adrob1'),
+            'password' => env('DB_PASSWORD', 'C0ron@over0727'),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
@@ -68,14 +60,15 @@ return [
             'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),
         ],
 
-        // Koneksi PT1 s/d PT4 menggunakan driver SQLSRV (Port 1433)
+        // --- KONEKSI TENANT (OPERASIONAL) ---
+        // Semua PT diarahkan ke Server Azure yang sama namun DB berbeda
         'pt1' => [
             'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => '1433',
-            'database' => env('DB_DATABASE_PT1'), 
-            'username' => env('DB_USERNAME', 'sa'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', 'sqldempo.southeastasia.cloudapp.azure.com'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE_PT1', 'Dempo'), 
+            'username' => env('DB_USERNAME', 'Adrob1'),
+            'password' => env('DB_PASSWORD', 'C0ron@over0727'),
             'charset' => 'utf8',
             'prefix' => '',
             'encrypt' => env('DB_ENCRYPT', 'yes'),
@@ -84,11 +77,11 @@ return [
 
         'pt2' => [
             'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => '1433',
-            'database' => env('DB_DATABASE_PT2'), 
-            'username' => env('DB_USERNAME', 'sa'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', 'sqldempo.southeastasia.cloudapp.azure.com'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE_PT2', 'ADE'), 
+            'username' => env('DB_USERNAME', 'Adrob1'),
+            'password' => env('DB_PASSWORD', 'C0ron@over0727'),
             'charset' => 'utf8',
             'prefix' => '',
             'encrypt' => env('DB_ENCRYPT', 'yes'),
@@ -97,11 +90,11 @@ return [
 
         'pt3' => [
             'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => '1433',
-            'database' => env('DB_DATABASE_PT3'), 
-            'username' => env('DB_USERNAME', 'sa'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', 'sqldempo.southeastasia.cloudapp.azure.com'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE_PT3', 'Senzo'), 
+            'username' => env('DB_USERNAME', 'Adrob1'),
+            'password' => env('DB_PASSWORD', 'C0ron@over0727'),
             'charset' => 'utf8',
             'prefix' => '',
             'encrypt' => env('DB_ENCRYPT', 'yes'),
@@ -110,11 +103,11 @@ return [
 
         'pt4' => [
             'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => '1433',
-            'database' => env('DB_DATABASE_PT4'), 
-            'username' => env('DB_USERNAME', 'sa'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_HOST', 'sqldempo.southeastasia.cloudapp.azure.com'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE_PT4', 'DLM'), 
+            'username' => env('DB_USERNAME', 'Adrob1'),
+            'password' => env('DB_PASSWORD', 'C0ron@over0727'),
             'charset' => 'utf8',
             'prefix' => '',
             'encrypt' => env('DB_ENCRYPT', 'yes'),
@@ -123,22 +116,11 @@ return [
 
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Migration Repository Table
-    |--------------------------------------------------------------------------
-    */
-
+    // ... sisa file (migrations & redis) tetap sama ...
     'migrations' => [
         'table' => 'migrations',
         'update_date_on_publish' => true,
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Redis Databases
-    |--------------------------------------------------------------------------
-    */
 
     'redis' => [
         'client' => env('REDIS_CLIENT', 'phpredis'),
@@ -166,5 +148,4 @@ return [
             'max_retries' => env('REDIS_MAX_RETRIES', 3),
         ],
     ],
-
 ];
