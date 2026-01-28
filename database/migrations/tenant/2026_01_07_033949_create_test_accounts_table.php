@@ -11,14 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('test_accounts', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique(); 
-            $table->string('password');
-            $table->string('pt_name')->nullable(); 
-            $table->timestamps();
+        // --- TAMBAHAN: Cek dulu apakah tabel 'akun' sudah ada ---
+        // Kalau tabel belum ada, baru dibuat. Kalau sudah ada, dilewati.
+        if (!Schema::hasTable('akun')) {
+            
+            Schema::create('akun', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('email')->unique(); 
+                $table->string('password');
+                // pt_name dihapus karena akun sudah berada di dalam database tenant masing-masing
+                $table->timestamps();
             });
+            
+        }
     }
 
     /**
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('test_accounts');
+        Schema::dropIfExists('akun');
     }
 };
