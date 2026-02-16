@@ -52,7 +52,7 @@ return [
             'port' => env('DB_PORT', '1433'),
             'database' => env('DB_DATABASE', 'master_bp'),
             'username' => env('DB_USERNAME', 'Adrob1'),
-            'password' => env('DB_PASSWORD', 'C0ron@over0727'),
+            'password' => 'C0ron@over0727', // SUDAH DIPERBAIKI (HARDCODE)
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
@@ -68,7 +68,7 @@ return [
             'port' => env('DB_PORT', '1433'),
             'database' => env('DB_DATABASE_PT1', 'Dempo'), 
             'username' => env('DB_USERNAME', 'Adrob1'),
-            'password' => env('DB_PASSWORD', 'C0ron@over0727'),
+            'password' => 'C0ron@over0727', // SUDAH DIPERBAIKI (HARDCODE)
             'charset' => 'utf8',
             'prefix' => '',
             'encrypt' => env('DB_ENCRYPT', 'yes'),
@@ -81,7 +81,7 @@ return [
             'port' => env('DB_PORT', '1433'),
             'database' => env('DB_DATABASE_PT2', 'ADE'), 
             'username' => env('DB_USERNAME', 'Adrob1'),
-            'password' => env('DB_PASSWORD', 'C0ron@over0727'),
+            'password' => 'C0ron@over0727', // SUDAH DIPERBAIKI (HARDCODE)
             'charset' => 'utf8',
             'prefix' => '',
             'encrypt' => env('DB_ENCRYPT', 'yes'),
@@ -94,7 +94,7 @@ return [
             'port' => env('DB_PORT', '1433'),
             'database' => env('DB_DATABASE_PT3', 'Senzo'), 
             'username' => env('DB_USERNAME', 'Adrob1'),
-            'password' => env('DB_PASSWORD', 'C0ron@over0727'),
+            'password' => 'C0ron@over0727', // SUDAH DIPERBAIKI (HARDCODE)
             'charset' => 'utf8',
             'prefix' => '',
             'encrypt' => env('DB_ENCRYPT', 'yes'),
@@ -107,7 +107,7 @@ return [
             'port' => env('DB_PORT', '1433'),
             'database' => env('DB_DATABASE_PT4', 'DLM'), 
             'username' => env('DB_USERNAME', 'Adrob1'),
-            'password' => env('DB_PASSWORD', 'C0ron@over0727'),
+            'password' => 'C0ron@over0727', // SUDAH DIPERBAIKI (HARDCODE)
             'charset' => 'utf8',
             'prefix' => '',
             'encrypt' => env('DB_ENCRYPT', 'yes'),
@@ -116,19 +116,33 @@ return [
 
     ],
 
-    // ... sisa file (migrations & redis) tetap sama ...
+    /*
+    |--------------------------------------------------------------------------
+    | Migration Repository Table
+    |--------------------------------------------------------------------------
+    */
+
     'migrations' => [
         'table' => 'migrations',
         'update_date_on_publish' => true,
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Redis Databases
+    |--------------------------------------------------------------------------
+    */
+
     'redis' => [
+
         'client' => env('REDIS_CLIENT', 'phpredis'),
+
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
             'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-database-'),
             'persistent' => env('REDIS_PERSISTENT', false),
         ],
+
         'default' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
@@ -138,6 +152,7 @@ return [
             'database' => env('REDIS_DB', '0'),
             'max_retries' => env('REDIS_MAX_RETRIES', 3),
         ],
+
         'cache' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
@@ -147,281 +162,7 @@ return [
             'database' => env('REDIS_CACHE_DB', '1'),
             'max_retries' => env('REDIS_MAX_RETRIES', 3),
         ],
+
     ],
+
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
