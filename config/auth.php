@@ -7,9 +7,7 @@ return [
     | Authentication Defaults
     |--------------------------------------------------------------------------
     |
-    | This option defines the default authentication "guard" and password
-    | reset "broker" for your application. You may change these values
-    | as required, but they're a perfect start for most applications.
+    | Default guard tetap 'web' (buat Admin Desktop).
     |
     */
 
@@ -20,73 +18,54 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Authentication Guards
+    | Authentication Guards (PINTU MASUK)
     |--------------------------------------------------------------------------
     |
-    | Next, you may define every authentication guard for your application.
-    | Of course, a great default configuration has been defined for you
-    | which utilizes session storage plus the Eloquent user provider.
-    |
-    | All authentication guards have a user provider, which defines how the
-    | users are actually retrieved out of your database or other storage
-    | system used by the application. Typically, Eloquent is utilized.
-    |
-    | Supported: "session"
+    | Di sini kita tambahkan pintu khusus buat Tablet (QC).
     |
     */
 
     'guards' => [
+        // 1. Pintu Admin (Desktop) - Pakai Session/Cookies
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        // 2. Pintu QC (Tablet) - Pakai Token Sanctum
+        'tablet' => [
+            'driver' => 'sanctum',
+            'provider' => 'tablet_users',
         ],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | User Providers
+    | User Providers (SUMBER DATA)
     |--------------------------------------------------------------------------
     |
-    | All authentication guards have a user provider, which defines how the
-    | users are actually retrieved out of your database or other storage
-    | system used by the application. Typically, Eloquent is utilized.
-    |
-    | If you have multiple user tables or models you may configure multiple
-    | providers to represent the model / table. These providers may then
-    | be assigned to any extra authentication guards you have defined.
-    |
-    | Supported: "database", "eloquent"
+    | Di sini kita kasih tau Laravel tabel mana yang dipakai.
     |
     */
 
     'providers' => [
+        // 1. Data Admin - Tabel 'users' (Model User)
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        // 2. 👇 INI BARU: Data QC - Tabel 'tablet_users' (Model TabletUser)
+        'tablet_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\TabletUser::class, // Pastikan Model ini sudah dibuat
+        ],
     ],
 
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
     |--------------------------------------------------------------------------
-    |
-    | These configuration options specify the behavior of Laravel's password
-    | reset functionality, including the table utilized for token storage
-    | and the user provider that is invoked to actually retrieve users.
-    |
-    | The expiry time is the number of minutes that each reset token will be
-    | considered valid. This security feature keeps tokens short-lived so
-    | they have less time to be guessed. You may change this as needed.
-    |
-    | The throttle setting is the number of seconds a user must wait before
-    | generating more password reset tokens. This prevents the user from
-    | quickly generating a very large amount of password reset tokens.
     |
     */
 
@@ -97,16 +76,20 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        
+        // (Opsional) Kalau QC mau bisa reset password juga, tambahin ini:
+        'tablet_users' => [
+            'provider' => 'tablet_users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
     /*
     |--------------------------------------------------------------------------
     | Password Confirmation Timeout
     |--------------------------------------------------------------------------
-    |
-    | Here you may define the number of seconds before a password confirmation
-    | window expires and users are asked to re-enter their password via the
-    | confirmation screen. By default, the timeout lasts for three hours.
     |
     */
 
