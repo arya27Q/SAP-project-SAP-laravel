@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tablet_users', function (Blueprint $table) {
+        Schema::connection('pt4')->create('tablet_users', function (Blueprint $table) {
             $table->id();
             $table->string('email')->unique();
             $table->string('password')->nullable();  //nullable karena diawal2
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tablet_users');
+        Schema::connection('pt4')->dropIfExists('tablet_users');
     }
 };

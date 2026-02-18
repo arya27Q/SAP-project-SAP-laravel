@@ -32,7 +32,7 @@ class QcInspectionController extends Controller
             'no_lbts'        => 'required|unique:qc_inspections,no_lbts', 
             'tgl_lbts'       => 'required|date',
             'tablet_user_id' => 'required|exists:tablet_users,id',
-            'sales_order_id' => 'required|exists:sales_orders_qc,id',
+            'sales_order_id' => 'required|exists:sales_orders,id',
             'customer_id'    => 'required|exists:customers,id',
             'jenis_produk'   => 'required|string',
             'qty_check'      => 'required|integer',

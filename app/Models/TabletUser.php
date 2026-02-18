@@ -3,27 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable; // PENTING: Ganti ini
-use Laravel\Sanctum\HasApiTokens; // PENTING: Buat Token Flutter
+use Illuminate\Foundation\Auth\User as Authenticatable; 
+use Laravel\Sanctum\HasApiTokens; 
 
 class TabletUser extends Authenticatable
 {
     use HasFactory, HasApiTokens;
 
-    protected $connection = 'pt4'; // Konek ke master_bp
-    protected $table = 'tablet_users'; // Sesuai skema kamu
+    protected $connection = 'pt4'; 
+    protected $table = 'tablet_users'; 
 
     protected $fillable = [
         'email',
         'nama_lengkap',
         'password',
-        'role', // default: 'qc_staff'
+        'role', 
         'must_set_password',
         'is_active',
     ];
 
     protected $hidden = [
-        'password', // Sembunyikan password saat return JSON
+        'password', 
     ];
 
     protected $casts = [
