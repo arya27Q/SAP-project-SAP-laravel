@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::connection('pt4')->create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('nama_customer')->unique();
-            $table->string('kode_sap')->nullable(); 
+            $table->string('kode_sap')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::connection('pt4')->dropIfExists('customers');
     }
 };
