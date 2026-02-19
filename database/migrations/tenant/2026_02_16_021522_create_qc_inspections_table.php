@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::connection('pt4')->create('qc_inspections', function (Blueprint $table) {
             // 1. Primary Key Custom (id_qc)
-            $table->id('id_qc'); 
+            $table->id('id'); 
 
             // 2. Data Unik & Tanggal
             $table->string('no_lbts')->unique();

@@ -13,7 +13,7 @@ class QcInspection extends Model
     protected $connection = 'pt4';
     
     // WAJIB: Karena primary key kamu bukan 'id' tapi 'id_qc'
-    protected $primaryKey = 'id_qc';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'no_lbts', 'tgl_lbts', 'tablet_user_id', 'sales_order_id', 

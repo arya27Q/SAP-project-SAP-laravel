@@ -27,18 +27,18 @@ class QcInspectionController extends Controller
     // 2. STORE (Untuk Submit Data dari Tablet Flutter)
     public function store(Request $request)
     {
-        // A. Validasi Input
+            // A. Validasi Input
         $validator = Validator::make($request->all(), [
-            'no_lbts'        => 'required|unique:qc_inspections,no_lbts', 
-            'tgl_lbts'       => 'required|date',
-            'tablet_user_id' => 'required|exists:tablet_users,id',
-            'sales_order_id' => 'required|exists:sales_orders,id',
-            'customer_id'    => 'required|exists:customers,id',
-            'jenis_produk'   => 'required|string',
-            'qty_check'      => 'required|integer',
-            'status'         => 'required|in:Pass,Reject,Hold', 
-            'foto_produk'    => 'nullable|image|mimes:jpeg,png,jpg|max:2048', 
-        ]);
+        'no_lbts'        => 'required|unique:pt4.qc_inspections,no_lbts', 
+        'tgl_lbts'       => 'required|date',
+        'tablet_user_id' => 'required|exists:pt4.tablet_users,id',        
+        'sales_order_id' => 'required|exists:pt4.sales_orders,id',        
+        'customer_id'    => 'required|exists:pt4.customers,id',           
+        'jenis_produk'   => 'required|string',
+        'qty_check'      => 'required|integer',
+        'status'         => 'required|in:Pass,Reject,Hold', 
+        'foto_produk'    => 'nullable|image|mimes:jpeg,png,jpg|max:2048', 
+    ]);
 
         if ($validator->fails()) {
             return response()->json([
