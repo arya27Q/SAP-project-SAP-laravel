@@ -80,6 +80,7 @@ return [
             'database' => env('DB_DATABASE_PT2', 'ADE'), 
             'username' => env('DB_USERNAME', 'Adrob1'),
             'password' => 'C0ron@over0727', 
+            
             'charset' => 'utf8',
             'prefix' => '',
             'encrypt' => env('DB_ENCRYPT', 'yes'),

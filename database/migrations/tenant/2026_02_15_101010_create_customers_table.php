@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-         // Bikin tabel ocrd untuk semua tenant
-         Schema::create('ocrd', function (Blueprint $table) {
-            $table->string('CardCode', 15)->primary(); // BP Code
+        Schema::connection('pt4')->create('customers', function (Blueprint $table) {
+         $table->string('CardCode', 15)->primary(); // BP Code
 
             // Core identity
             $table->string('CardName', 100)->nullable(); // BP Name
@@ -80,7 +79,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Fungsi ini yang tadi hilang
-        Schema::dropIfExists('ocrd');
+        Schema::connection('pt4')->dropIfExists('customers');
     }
 };
