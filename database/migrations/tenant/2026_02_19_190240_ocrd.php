@@ -41,15 +41,15 @@ return new class extends Migration
             $table->string('County', 100)->nullable();
             $table->string('Country', 3)->nullable();     // ISO-ish (SAP kadang pakai kode internal)
 
-            // Financial (pakai decimal, jangan float)
+            // Financial (pakai decimal)
             $table->string('Currency', 3)->nullable();    // 'IDR', 'USD', dll
             $table->decimal('Balance', 18, 2)->nullable();
             $table->decimal('OrdersBal', 18, 2)->nullable();
             $table->decimal('DNotesBal', 18, 2)->nullable();
 
             // Status flags
-            $table->char('ValidFor', 1)->nullable();      // 'Y'/'N'
-            $table->char('FrozenFor', 1)->nullable();     // 'Y'/'N'
+            $table->char('ValidFor', 1)->nullable();      
+            $table->char('FrozenFor', 1)->nullable();     
             $table->date('FrozenFrom')->nullable();
             $table->date('FrozenTo')->nullable();
 
