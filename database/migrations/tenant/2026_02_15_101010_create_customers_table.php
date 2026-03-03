@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::connection('pt4')->create('customers', function (Blueprint $table) {
-         $table->string('CardCode', 15)->primary(); // BP Code
+         $table->string('CardCode', 15)->primary(); 
 
             // Core identity
-            $table->string('CardName', 100)->nullable(); // BP Name
+            $table->string('CardName', 100)->nullable(); 
             $table->char('CardType', 1)->nullable();     // 'C' Customer, 'S' Supplier, 'L' Lead
-            $table->integer('GroupCode')->nullable();    // BP Group
+            $table->integer('GroupCode')->nullable();   
 
             // Tax / legal
             $table->string('LicTradNum', 32)->nullable(); // NPWP / Tax ID (panjang bisa beda, ini aman)
-            $table->char('VatLiable', 1)->nullable();     // 'Y'/'N'
+            $table->char('VatLiable', 1)->nullable();     
 
             // Contact
             $table->string('Phone1', 20)->nullable();
